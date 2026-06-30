@@ -8,6 +8,16 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
+plt.rcParams.update({
+    "font.family": "DejaVu Sans",
+    "font.size": 9,
+    "axes.titlesize": 10,
+    "axes.labelsize": 9,
+    "legend.fontsize": 9,
+    "figure.dpi": 150,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+})
 
 def load_metrics(csv_path: Path) -> dict[str, float]:
     metrics: dict[str, float] = {}
@@ -20,8 +30,10 @@ def load_metrics(csv_path: Path) -> dict[str, float]:
 
 def main() -> None:
     csv_path = Path("signfi_cnn_results.csv")
-    out_png_path = Path("signfi_fig17a_17c_like.png")
-    out_pdf_path = Path("signfi_fig17a_17c_like.pdf")
+    out_dir = Path("plots")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_png_path = out_dir / "signfi_fig17a_17c_like.png"
+    out_pdf_path = out_dir / "signfi_fig17a_17c_like.pdf"
 
     metrics = load_metrics(csv_path)
 
